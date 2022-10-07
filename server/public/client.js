@@ -4,24 +4,37 @@ $(document).ready(onReady);
 
 function onReady() {
     console.log('in onReady');
-    getToDos();
+    refreshToDos();
 }
 
-function getToDos() {
-    console.log('in getToDoes');
-    $('#notDone').empty();
-
+function refreshToDos() {
+    console.log('in refreshToDos');
     $.ajax({
         type: 'GET',
         url: '/todo'
     }).then(function (response) {
         console.log('GET /todo response', response);
-        render();
+        renderToDos(response);
     }).catch(function (error) {
         console.log('GET /todo error', error);
     });
 }
 
-function render() {
-    console.log('in render');
+function renderToDos(toDos) {
+    console.log('in renderToDos');
+    $('#notDone').empty();
+
+    for(let toDo of toDos) {
+        $('#notDone').append(`
+        <tr>
+            <td>${toDo.comment}</td>
+            <td>
+                <button data-id=${toDo.id} class=markToCompleteButton>Mark to Complete</button>
+            </td>
+            <td>
+                <button data-id=${toDo.id} class="deleteButton">Delete</button>
+            </td>
+        </tr>
+        `);
+    }
 }
