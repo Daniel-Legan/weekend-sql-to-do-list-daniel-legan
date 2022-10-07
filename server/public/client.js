@@ -5,6 +5,31 @@ $(document).ready(onReady);
 function onReady() {
     console.log('in onReady');
     refreshToDos();
+    clickHandlers();
+}
+
+function clickHandlers() {
+    $('#submitButton').on('click', handleSubmit);
+}
+
+function handleSubmit() {
+    console.log('in handleSubmit');
+    let toDo = { comment: $('#todoIn').val() };
+    console.log('the toDo collected', toDo);
+    addToDo(toDo);
+}
+
+function addToDo(toDoToAdd) {
+    $.ajax({
+    type: 'POST',
+    url: '/todo',
+    data: toDoToAdd
+    }).then(function (response) {
+        console.log('POST /todo response from server', response);
+        refreshToDos();
+    }).catch(function (error) {
+        console.log('POST /todo error from server', error)
+    });
 }
 
 function refreshToDos() {

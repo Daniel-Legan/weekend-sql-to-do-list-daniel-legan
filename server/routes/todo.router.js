@@ -18,6 +18,20 @@ todoRouter.get('/', (req, res) => {
 });
 
 // POST
+todoRouter.post('/', (req, res) => {
+    let newToDo = req.body;
+    console.log('adding newToDo', newToDo);
+
+    let queryText = `INSERT INTO "todo" ("comment")
+                    VALUES ($1);`;
+    pool.query(queryText, [newToDo.comment])
+        .then(result => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log('error adding newToDo.comment', error);
+        });
+});
 
 // PUT
 
