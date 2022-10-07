@@ -10,6 +10,23 @@ function onReady() {
 
 function clickHandlers() {
     $('#submitButton').on('click', handleSubmit);
+    $('#notDone').on('click', '.markToCompleteButton', markAsComplete);
+}
+
+function markAsComplete() {
+    // get the unique id of each entry
+    console.log('in markAsComplete id', $(this).data('id'));
+    let toDoID = $(this).data('id');
+
+    $.ajax({
+        method: 'PUT',
+        url: `/todo/${toDoID}`
+      }).then(function (response) {
+        console.log('the toDo was updated!');
+        refreshToDos();
+      }).catch(function (error) {
+        console.log('error on put', error);
+      });
 }
 
 function handleSubmit() {
@@ -53,6 +70,7 @@ function renderToDos(toDos) {
         $('#notDone').append(`
         <tr>
             <td>${toDo.comment}</td>
+            <td>${toDo.complete}</td>
             <td>
                 <button data-id=${toDo.id} class=markToCompleteButton>Mark to Complete</button>
             </td>

@@ -6,7 +6,7 @@ const pool = require('../modules/pool');
 
 // GET
 todoRouter.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "todo";';
+    let queryText = 'SELECT * FROM "todo" ORDER BY "created_at";';
     pool.query(queryText)
     .then(result => {
         res.send(result.rows);
@@ -34,6 +34,21 @@ todoRouter.post('/', (req, res) => {
 });
 
 // PUT
+todoRouter.put('/:id', (req, res) => {
+    console.log('in PUT with id', req.params.id);
+    const toDoID = req.params.id;
+
+    let sqlText = `UPDATE "todo" SET "complete" = NOT "complete" WHERE "id" = $1;`;
+
+    pool.query(sqlText, [toDoID])
+        .then((databaseResult) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('error updating todo', error);
+            res.sendStatus(500);
+        });
+});
 
 // DELETE
 
