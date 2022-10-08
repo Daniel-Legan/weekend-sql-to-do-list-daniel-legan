@@ -11,6 +11,7 @@ function onReady() {
 function clickHandlers() {
     $('#submitButton').on('click', handleSubmit);
     $('#notDone').on('click', '.markToCompleteButton', markAsComplete);
+    $('#done').on('click', '.switchToNotComplete', markAsComplete);
 }
 
 function markAsComplete() {
@@ -65,19 +66,35 @@ function refreshToDos() {
 function renderToDos(toDos) {
     console.log('in renderToDos');
     $('#notDone').empty();
+    $('#done').empty();
 
     for(let toDo of toDos) {
-        $('#notDone').append(`
-        <tr>
-            <td>${toDo.comment}</td>
-            <td>${toDo.complete}</td>
-            <td>
-                <button data-id=${toDo.id} class=markToCompleteButton>Mark to Complete</button>
-            </td>
-            <td>
-                <button data-id=${toDo.id} class="deleteButton">Delete</button>
-            </td>
-        </tr>
-        `);
+        if(toDo.complete === false) {
+            $('#notDone').append(`
+            <tr>
+                <td>${toDo.comment}</td>
+                <td>${toDo.complete}</td>
+                <td>
+                    <button data-id=${toDo.id} class=markToCompleteButton>Mark to Complete</button>
+                </td>
+                <td>
+                    <button data-id=${toDo.id} class="deleteButton">Delete</button>
+                </td>
+            </tr>
+            `);
+        }else if(toDo.complete === true) {
+            $('#done').append(`
+            <tr>
+                <td>${toDo.comment}</td>
+                <td>${toDo.complete}</td>
+                <td>
+                    <button data-id=${toDo.id} class=switchToNotComplete>Switch to Not Complete</button>
+                </td>
+                <td>
+                    <button data-id=${toDo.id} class="deleteButton">Delete</button>
+                </td>
+            </tr>
+            `);
+        }
     }
 }
