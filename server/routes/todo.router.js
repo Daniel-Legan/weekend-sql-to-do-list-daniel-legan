@@ -51,5 +51,22 @@ todoRouter.put('/:id', (req, res) => {
 });
 
 // DELETE
+todoRouter.delete('/:id', (req, res) => {
+    console.log('in DELETE with id:', req.params.id);
+    const toDoID = req.params.id;
+  
+    const sqlText = `DELETE FROM "todo" WHERE "id" = $1;`;
+    const sqlParams = [toDoID];
+  
+    pool.query(sqlText, sqlParams)
+        .then((databaseResult) => {
+          res.sendStatus(200);
+        })
+        .catch((error) => {
+          console.log('DELETE failed', error);
+          res.sendStatus(500);
+        });
+  });
+
 
 module.exports = todoRouter;

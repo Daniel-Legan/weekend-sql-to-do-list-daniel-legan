@@ -12,6 +12,7 @@ function clickHandlers() {
     $('#submitButton').on('click', handleSubmit);
     $('#notDone').on('click', '.markToCompleteButton', markAsComplete);
     $('#done').on('click', '.switchToNotComplete', markAsComplete);
+    $('tbody').on('click', '.deleteButton', deleteToDo);
 }
 
 function markAsComplete() {
@@ -23,7 +24,7 @@ function markAsComplete() {
         method: 'PUT',
         url: `/todo/${toDoID}`
       }).then(function (response) {
-        console.log('the toDo was updated!');
+        console.log('the toDo was updated!', response);
         refreshToDos();
       }).catch(function (error) {
         console.log('error on put', error);
@@ -50,13 +51,28 @@ function addToDo(toDoToAdd) {
     });
 }
 
+function deleteToDo() {
+    console.log('in deleteToDo id', $(this).data('id'));
+    let toDoID = $(this).data('id');
+
+    $.ajax({
+        method: 'DELETE',
+        url: `/todo/${toDoID}`
+    }).then(function (response) {
+        console.log('the toDo was deleted!', response);
+        refreshToDos();
+    }).catch(function (error) {
+        console.log('error on delete', error);
+    });
+}
+
 function refreshToDos() {
     console.log('in refreshToDos');
     $.ajax({
         type: 'GET',
         url: '/todo'
     }).then(function (response) {
-        console.log('GET /todo response', response);
+        // console.log('GET /todo response', response);
         renderToDos(response);
     }).catch(function (error) {
         console.log('GET /todo error', error);
