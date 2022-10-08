@@ -75,7 +75,7 @@ function refreshToDos() {
         // console.log('GET /todo response', response);
         renderToDos(response);
     }).catch(function (error) {
-        console.log('GET /todo error', error);
+        console.log('GET /todo error from server', error);
     });
 }
 
@@ -104,7 +104,7 @@ function renderToDos(toDos) {
                 <td>${toDo.comment}</td>
                 <td>${toDo.complete}</td>
                 <td>
-                    <button data-id=${toDo.id} class=switchToNotComplete>Switch to Not Complete</button>
+                    <button data-id=${toDo.id} class=switchToNotComplete>Undo</button>
                 </td>
                 <td>
                     <button data-id=${toDo.id} class="deleteButton">Delete</button>

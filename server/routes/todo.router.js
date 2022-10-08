@@ -29,7 +29,7 @@ todoRouter.post('/', (req, res) => {
             res.sendStatus(201);
         })
         .catch(error => {
-            console.log('error adding newToDo.comment', error);
+            console.log('error adding todo', error);
         });
 });
 
@@ -63,7 +63,7 @@ todoRouter.delete('/:id', (req, res) => {
           res.sendStatus(200);
         })
         .catch((error) => {
-          console.log('DELETE failed', error);
+          console.log('error deleting todo', error);
           res.sendStatus(500);
         });
   });
