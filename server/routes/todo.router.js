@@ -6,7 +6,8 @@ const pool = require('../modules/pool');
 
 // GET
 todoRouter.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "todo" ORDER BY "created_at";';
+    let queryText = 'SELECT * FROM "todo" ORDER BY "id";';
+    // let queryText = 'SELECT * FROM "todo" ORDER BY "created_at";';
     pool.query(queryText)
     .then(result => {
         res.send(result.rows);

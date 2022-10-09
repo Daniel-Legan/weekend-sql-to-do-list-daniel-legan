@@ -1,0 +1,34 @@
+main {
+    width: 50%;
+    margin: auto;
+}
+
+section {
+    border: 2px solid blueviolet;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+h3 {
+    text-align: center;
+}
+
+header {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.deleteButton {
+    background-color: aqua;
+}
+
+table {
+    width: 100%;
+}
+
+/* W3 SCHOOLS */
+
+tr:nth-child(odd) {
+    background: grey;
+}
