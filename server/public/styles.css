@@ -1,53 +1,35 @@
 main {
     width: 50%;
     margin: auto;
+    padding-top: 20%;
 }
 
-section {
-    padding: 1rem;
-    border-radius: 0.5rem;
+/* W3 Styling */
+/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_todo */
+/* 
+ I used this template and adjusted the logic from a table layout to a list layout to preserve formatting.
+ It was proving to be quite difficult to achieve the proportion I was going for when attempting a table layout.
+*/
+
+h2 {
+    margin: 5px;
 }
 
-.deleteButton {
-    border: solid red;
-    float: right;
-    padding: 5px;
-    border-radius: 0.5rem;
-    margin-bottom: 10px;
-}
-
-table {
-    width: 100%;
-}
-
-/* W3 SCHOOLS */
-
-/* tr td {
-    border-radius: 0.5rem;
-    padding-left: 10px;
-    padding-top: 10px;
-
-    cursor: pointer;
-    position: relative;
-    padding: 12px 8px 12px 40px;
-    list-style-type: none;
-    background: #eee;
-    font-size: 18px;
-    transition: 0.2s;
-} */
-
-/* tbody:nth-child(odd) {
-    background: #f9f9f9;
-} */
-
-.false {
-    text-decoration: line-through;
+* {
+    box-sizing: border-box;
 }
 
 #topSection {
     background-color: #f44336;
+    padding: 30px 40px;
     color: white;
     text-align: center;
+}
+
+#topSection:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 input {
@@ -56,7 +38,8 @@ input {
     border-radius: 0;
     width: 75%;
     padding: 10px;
-    /* float: left; */
+    float: left;
+    font-size: 16px; 
 }
 
 #submitButton {
@@ -64,15 +47,59 @@ input {
     width: 25%;
     background: #d9d9d9;
     color: #555;
-    border: none;
-    /* float: right; */
+    float: left;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
     border-radius: 0;
-  }
+}
 
-  #submitButton:hover {
+#submitButton:hover {
     background-color: #bbb;
-  }
+}
+
+.deleteButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+
+.deleteButton:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+ul li:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.5s;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li:hover {
+    background: #ddd;
+}
+
+.false {
+    text-decoration: line-through;
+}
+
+ul li.false {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
