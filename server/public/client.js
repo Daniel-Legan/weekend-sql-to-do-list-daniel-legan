@@ -81,15 +81,11 @@ function refreshToDos() {
 function renderToDos(toDos) {
     console.log('in renderToDos');
     $('tbody').empty();
-    // $('#done').empty();
+
     for(let toDo of toDos) {
             $('tbody').append(`
             <tr>
-                <td data-id=${toDo.id} class=markToCompleteButton>${toDo.comment}</td>
-                <td>${toDo.complete}</td>
-                <td>
-                    <button data-id=${toDo.id} class="deleteButton">Delete</button>
-                </td>
+                <td data-id=${toDo.id} class="markToCompleteButton ${toDo.complete}">${toDo.comment}<span data-id=${toDo.id} class="deleteButton">\u00D7</span></td>
             </tr>
             `);
     }

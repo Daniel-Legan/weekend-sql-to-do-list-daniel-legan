@@ -4,23 +4,16 @@ main {
 }
 
 section {
-    border: 2px solid blueviolet;
     padding: 1rem;
     border-radius: 0.5rem;
 }
 
-h3 {
-    text-align: center;
-}
-
-header {
-    margin: auto;
-    width: 50%;
-    text-align: center;
-}
-
 .deleteButton {
-    background-color: aqua;
+    border: solid red;
+    float: right;
+    padding: 5px;
+    border-radius: 0.5rem;
+    margin-bottom: 10px;
 }
 
 table {
@@ -29,6 +22,57 @@ table {
 
 /* W3 SCHOOLS */
 
-tr:nth-child(odd) {
-    background: grey;
+/* tr td {
+    border-radius: 0.5rem;
+    padding-left: 10px;
+    padding-top: 10px;
+
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+} */
+
+/* tbody:nth-child(odd) {
+    background: #f9f9f9;
+} */
+
+.false {
+    text-decoration: line-through;
 }
+
+#topSection {
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+}
+
+input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    /* float: left; */
+}
+
+#submitButton {
+    padding: 10px;
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    border: none;
+    /* float: right; */
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+  }
+
+  #submitButton:hover {
+    background-color: #bbb;
+  }
