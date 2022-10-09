@@ -17,7 +17,22 @@ function clickHandlers() {
 function handleSubmit() {
     console.log('in handleSubmit');
 
-    let toDo = { comment: $('#todoIn').val() }; // collect input from DOM
+    // prevent sending strings that start with white space
+    let whatIsThis = $('#todoIn').val();
+
+    // Stack Overflow
+    // https://stackoverflow.com/a/5964427
+    console.log('what is this?', whatIsThis);
+    console.log('what is this length?', whatIsThis.length);
+    console.log('what is this without whitespace', whatIsThis.replace(/\s/g,''));
+    console.log('what is this length without whitespace', whatIsThis.replace(/\s/g,'').length);
+    if(whatIsThis.replace(/\s/g,'').length === 0){
+        return;
+    }
+
+    let str = $('#todoIn').val();
+    let toDo = { comment: str.trim() }; // collect input from DOM, trim extra white space before and after text for database cleanliness
+    // let toDo = { comment: $('#todoIn').val() };
 
     console.log('the toDo collected', toDo);
 
@@ -49,6 +64,9 @@ function addToDo(toDoToAdd) {
     }).then(function (response) {
         console.log('POST /todo response from server', response);
         // response = Created/OKAY
+
+        // clear input field
+        $('#todoIn').val('');
 
         refreshToDos();
 
