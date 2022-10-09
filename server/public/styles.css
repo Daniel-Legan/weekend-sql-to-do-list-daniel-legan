@@ -1,7 +1,10 @@
 main {
+    /* center app */
     width: 50%;
     margin: auto;
+    /* lower app */
     padding-top: 20%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* W3 Styling */
@@ -9,6 +12,7 @@ main {
 /* 
  I used this template and adjusted the logic from a table layout to a list layout to preserve formatting.
  It was proving to be quite difficult to achieve the proportion I was going for when attempting a table layout.
+ I added notes to replicate this style for future assignments/projects for reference.
 */
 
 h2 {
@@ -20,13 +24,14 @@ h2 {
 }
 
 #topSection {
-    background-color: #f44336;
+    background-color: #3688f4;
     padding: 30px 40px;
     color: white;
     text-align: center;
 }
 
 #topSection:after {
+    /* create space below input field */
     content: "";
     display: table;
     clear: both;
@@ -39,16 +44,19 @@ input {
     width: 75%;
     padding: 10px;
     float: left;
+    /* font size 16 px to match submit button height */
     font-size: 16px; 
 }
 
 #submitButton {
     padding: 10px;
+    /* 25% of the 75% input div */
     width: 25%;
     background: #d9d9d9;
     color: #555;
-    float: left;
+    float: right;
     text-align: center;
+    /* font size 16 px to match input height */
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
@@ -60,6 +68,9 @@ input {
 }
 
 .deleteButton {
+    /* the delete button's nearest ancestor is a <li> */
+    /* the absolute position of the delete button is positioned relative to the <li> (all the way to the right side like <span>) */
+    /* used in conjunction with position: relative of the parent */
     position: absolute;
     right: 0;
     top: 0;
@@ -71,13 +82,16 @@ input {
     color: white;
 }
 
+/* every other is different color in list */
 ul li:nth-child(odd) {
     background: #f9f9f9;
 }
 
 ul li {
     cursor: pointer;
+    /* looks like a hand */
     position: relative;
+    /* the parent to check mark and delete button */
     padding: 12px 8px 12px 40px;
     list-style-type: none;
     background: #eee;
@@ -94,12 +108,25 @@ ul li:hover {
     background: #ddd;
 }
 
-.false {
-    text-decoration: line-through;
-}
-
+/* add a line through if class is false */
 ul li.false {
     background: #888;
     color: #fff;
     text-decoration: line-through;
 }
+
+/* add a check mark before the <li> */
+ul li.false::before {
+    content: '';
+    /* used in conjunction with position: relative of the parent */
+    position: absolute;
+    /* creating the check mark */
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+  }
